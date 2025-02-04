@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import axios from "axios";
-import { isPerfect, isArmstrong, DEFINITIONS } from "./utilities/utils.js";
+import { isPerfect, isArmstrong, DEFINITIONS } from "../utilities/utils.js";
 
 dotenv.config();
 
