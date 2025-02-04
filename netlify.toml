@@ -1,12 +1,19 @@
 [build]
-  command = "npm run build"
-  publish = "dist"
-  functions = "functions"
+  functions = "netlify/functions"
+
+[dev]
+  port = 8888
 
 [[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/server"
+  from = "/api/*"
+  to = "/.netlify/functions/server/:splat"
   status = 200
+
+[[redirects]]
+  from = "::1:3999"
+  to = ":::*"
+  status = 200
+  force = true
 
 [[headers]]
   for = "/*"

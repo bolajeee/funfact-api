@@ -3,14 +3,13 @@ import cors from "cors";
 import dotenv from "dotenv";
 import axios from "axios";
 import { isPerfect, isArmstrong, DEFINITIONS } from "../utilities/utils.js";
+import serverless from "serverless-http";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-const PORT = process.env.PORT || 3000;
 
 app.get("/api/classify-number", async (req, res) => {
   const number = req.query.number;
@@ -46,16 +45,10 @@ app.get("/api/classify-number", async (req, res) => {
     res.status(500).json({
       number: num,
       error: true,
-      message: "Error fetching fun fact",
-      properties,
-      definitions: DEFINITIONS,
-      sum_of_digits: String(num)
-        .split("")
-        .reduce((sum, digit) => sum + Number(digit), 0),
+      message: "Error fetching fun fact"
     });
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Export the serverless handler
+export const handler = serverless(app);
