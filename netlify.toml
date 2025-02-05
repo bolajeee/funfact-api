@@ -1,24 +1,17 @@
 [build]
-  publish = "."  
   functions = "netlify/functions"
+  publish = "public"
 
 [dev]
   port = 8888
 
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/server/:splat"
+  to = "/.netlify/functions/:splat"
   status = 200
-
-[[redirects]]
-  from = "::1:3999"
-  to = ":::*"
-  status = 200
-  force = true
 
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    Content-Security-Policy = "frame-ancestors 'none'"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
