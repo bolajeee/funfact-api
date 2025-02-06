@@ -1,6 +1,6 @@
 [build]
   functions = "netlify/functions"
-  publish = "."
+  publish = "src"
 
 [dev]
   port = 8888
@@ -15,3 +15,7 @@
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+
+[functions]
+  external_node_modules = ["axios"]
+  node_bundler = "esbuild"
